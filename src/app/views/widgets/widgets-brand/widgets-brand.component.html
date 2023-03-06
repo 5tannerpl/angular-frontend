@@ -1,0 +1,11 @@
+<c-row >
+  <c-col sm="6" xl="3" >
+    <c-widget-stat-f 
+    [title]="'Overdue/Total Contact '" class="mb-4" color="primary" padding value="{{contactOverdue}}/{{totalContact}}" (click)="showListClick()">
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f>
+  </c-col>
+  
+</c-row>

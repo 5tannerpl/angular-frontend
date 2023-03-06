@@ -1,0 +1,71 @@
+<c-row>
+  <c-card >
+    <c-card-body>
+      <P> This is a small function model in a Child and Family Health Nursing Management App.</P>
+      <p> One of the task is for the registered nurse in Child and Family Health Center to visit moms and newborn baby,which is a free NSW goverment service.</p>
+      <P> Nurses will rate the healthy status each time and book the day for the next visit.</P>
+      <P> In this funtiaonal widgets, the number of overdue visits and the number of toltal contacted moms are displayed as an item in the dashboard when nurse leader login. More details will be shown up in table while clicking the widget.</P><br>
+    </c-card-body>
+  <br>
+  <app-widgets-brand [showList]="showList" [contactOverdue]="contactOverdue" [totalContact]="totalContact"
+    (result)="onChangeShow($event)">
+  </app-widgets-brand>
+  <c-col xs>
+    <c-card class="mb-4" *ngIf="showList">
+      <c-card-header>
+        <div class="row">
+          <div class="col-md-2">
+            <h5 class="card-text">Filter by Nurse</h5>
+            <select class="form-control" (change)="onChange($event)">
+              <option value="all">All</option>
+              <option *ngFor="let item of contactNurseList">{{item}}</option>
+            </select>
+          </div>
+        </div>
+      </c-card-header>
+      <c-card-body>
+        <table [responsive]="true" align="middle" cTable class="mb-0 border">
+          <thead>
+            <tr>
+              <th class="text-center">Mommy's Name</th>
+              <th class="text-center">Address</th>
+              <th class="text-center">Health Rate</th>
+              <th class="text-center">Contact Nurse</th>
+              <th class="text-center">Last Vist</th>
+              <th class="text-center">Next Vist</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of listForFilter; index as i">
+
+              <td class="text-center">
+                <div>{{ user.name }}</div>
+                <div class="small text-medium-emphasis text-nowrap">
+                  <span>
+                    {{ user.mobile }}
+                  </span>
+                </div>
+              </td>
+              <td class="text-center">
+                <span>{{user.address}}</span>
+              </td>
+              <td class="text-center">
+                <strong>{{ user.healthRate}}%</strong>
+              </td>
+              <td class="text-center">
+                <span>{{user.contactNurse}}</span>
+              </td>
+              <td class="text-center">
+                <div class="fw-semibold text-nowrap">{{ user.lastVisit }}</div>
+              </td>
+              <td [ngClass]="isOverDue(user.nextVisit, today)? 'date-unavailable' : 'date-display'">
+                <div class="fw-semibold text-nowrap">{{ user.nextVisit }}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-card>
+</c-row>

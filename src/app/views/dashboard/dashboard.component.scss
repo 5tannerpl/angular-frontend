@@ -1,0 +1,16 @@
+:host {
+  .legend {
+    small {
+      font-size: x-small;
+    }
+  }
+}
+
+.date-display {
+  text-align: center;
+}
+
+.date-unavailable {
+  text-align: center;
+  color: red;
+}
