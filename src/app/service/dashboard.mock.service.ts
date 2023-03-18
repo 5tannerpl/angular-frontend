@@ -116,6 +116,8 @@ export class DashboardMockService implements IDashboardMockService {
     }
   ];
 
+  private readonly _url = "users";
+
   getVisitList():Observable<visitList[]>{
     return of(this.visitLists)
   }

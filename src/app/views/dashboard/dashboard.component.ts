@@ -12,7 +12,8 @@ import { DashboardService } from '../../service/dashboard.service';
 export class DashboardComponent implements OnInit {
   icons = { cilChartPie, cilArrowRight };
   constructor(
-    private service: DashboardMockService) {
+    private service:DashboardMockService,
+    private dservice:DashboardService) {
   }
   contactOverdue: number = 0;
   totalContact: number = 0;
@@ -23,10 +24,20 @@ export class DashboardComponent implements OnInit {
   showList: boolean = false;
   listForFilter: visitList[] = [];
   contactNurseList: string[] = [];
-  visitLists: visitList[] = [];
+  visitLists: visitList[]=[];
 
   ngOnInit(): void {
+    //for Mock
     this.service.getVisitList().subscribe((visitLists) => this.visitLists = visitLists);
+
+    //for Api
+    /* this.dservice.getUsers().subscribe((res:any) => {
+      this.visitLists=res;    
+      console.log('res.',res);
+      
+    });  */
+    console.log(this.visitLists);
+    
     this.listForFilter = this.visitLists;
     for (let item of this.visitLists) {
       this.contactNurseList.push(item.contactNurse);

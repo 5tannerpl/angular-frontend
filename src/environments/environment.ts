@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
-  providers:[
-  ]
+  /* apiUrl: 'http://localhost:3001/api'
+ 
+   */
 };
 
